@@ -47,7 +47,8 @@
           </table>
         </div>
         <div class="card-action">
-          <a click="goToBack()" href="">Retour</a>
+          <a (click)="goToBack()">Retour</a>
+          <a (click)="goToEditPokemon(pokemon.id)">Editer</a>
         </div>
       </div>
     </div>

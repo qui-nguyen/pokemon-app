@@ -1,0 +1,7 @@
+.ng-valid[required] {
+    border-left: 5px solid rgb(96, 239, 106);
+}
+
+.ng-invalid:not(form) { // pour les checkboxs
+    border-left: 5px solid rgb(239, 137, 96);
+}

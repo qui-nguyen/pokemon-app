@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Pokemon } from './pokemon';
 import { POKEMONS } from './mock-pokemmon-list';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  // { providedIn: 'root'} // provide all appli
+)
 export class PokemonService {
-  
+
   getPokemonList(): Pokemon[] {
     return POKEMONS;
   }

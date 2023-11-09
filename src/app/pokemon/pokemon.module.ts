@@ -6,6 +6,7 @@ import { PokemonTypeColorPipe } from './pokemon-type-color.pipe';
 import { ListPokemonComponent } from './list-pokemon/list-pokemon.component';
 import { DetailPokemonComponent } from './detail-pokemon/detail-pokemon.component';
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
+import { PokemonService } from './pokemon.service';
 
 const pokemonRoutes: Routes = [ // declare les routes spécifiques en hut puis générales en bas
   { path: 'pokemons', component: ListPokemonComponent },
@@ -23,6 +24,8 @@ const pokemonRoutes: Routes = [ // declare les routes spécifiques en hut puis g
   imports: [
     CommonModule,
     RouterModule.forChild(pokemonRoutes)
-  ]
+  ],
+  providers: [PokemonService] 
+  // utilisation de ce service slm dans pokémon module (pas module global) => voir pokemon.service pour l'utilisation en global
 })
 export class PokemonModule { }

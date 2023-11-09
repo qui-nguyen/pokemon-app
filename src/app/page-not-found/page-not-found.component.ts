@@ -11,7 +11,6 @@ import { Component, OnInit } from '@angular/core';
     </a>
   </div>
 `,
-  styleUrls: ['./page-not-found.component.scss']
 })
 export class PageNotFoundComponent {
 

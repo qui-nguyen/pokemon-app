@@ -1,21 +1,50 @@
 import { Injectable } from '@angular/core';
 import { Pokemon } from './pokemon';
-import { POKEMONS } from './mock-pokemmon-list';
+import { HttpClient } from '@angular/common/http';
+import { Observable, tap, of, catchError } from 'rxjs';
 
 @Injectable(
   // { providedIn: 'root'} // provide all appli
 )
 export class PokemonService {
 
-  getPokemonList(): Pokemon[] {
-    return POKEMONS;
+  constructor(private http: HttpClient) {
+
   }
 
-  getPokemonById(id: number): Pokemon | undefined {
-    return POKEMONS.find(pokemon => pokemon.id === id);
+  getPokemonList(): Observable<Pokemon[]> {
+    // return POKEMONS;
+    return this.http.get<Pokemon[]>('api/pokemons')
+      .pipe(
+        tap((result) => this.log(result)),
+        catchError((error) => this.handleError(error, undefined))
+      )
   }
 
-  getPokemonTypeList(): string[] {
-    return [...new Set(POKEMONS.flatMap(pokemon => pokemon.types))]; // unique type value
+  getPokemonById(id: number): Observable<Pokemon | undefined> {
+    return this.http.get<Pokemon>(`api/pokemons/${id}`)
+      .pipe(
+        tap((result) => this.log(result)),
+        catchError((error) => this.handleError(error, undefined))
+      )
+  }
+
+  private log(response: Pokemon[] | Pokemon | undefined | string[]): void {
+    console.table(response);
+  }
+
+  private handleError(error: Error, errorValue: any) {
+    console.error(error);
+    return of(errorValue);
+  }
+
+  getPokemonTypeList(): Observable<string[]> {
+    return this.http.get<string[]>(`api/allTypes`)
+      .pipe(
+        tap((result) => {
+          this.log(result);
+        }),
+        catchError((error) => this.handleError(error, undefined))
+      )
   }
 }

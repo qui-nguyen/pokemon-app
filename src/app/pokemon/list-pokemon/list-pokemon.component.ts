@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { POKEMONS } from '../mock-pokemmon-list';
 import { Pokemon } from '../pokemon';
 import { Router } from '@angular/router';
 import { PokemonService } from '../pokemon.service';
@@ -8,7 +7,7 @@ import { PokemonService } from '../pokemon.service';
   selector: 'app-list-pokemon',
   templateUrl: './list-pokemon.component.html',
 })
-export class ListPokemonComponent implements OnInit {
+export class ListPokemonComponent implements OnInit { 
   pokemonList: Pokemon[];
   pokemonTypeList: string[];
 
@@ -17,9 +16,8 @@ export class ListPokemonComponent implements OnInit {
     private pokemonService: PokemonService) {
   }
   ngOnInit(): void {
-    this.pokemonList = this.pokemonService.getPokemonList();
-    this.pokemonTypeList = this.pokemonService.getPokemonTypeList();
-    console.log(this.pokemonTypeList);
+    this.pokemonService.getPokemonList().subscribe((pkmList) => this.pokemonList = pkmList);
+    this.pokemonService.getPokemonTypeList().subscribe((allTypes) => this.pokemonTypeList = allTypes);
   }
 
   goToPokemon(id: number) {

@@ -17,7 +17,7 @@ export class PokemonFormComponent implements OnInit {
     private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
-    this.allTypes = this.pokemonService.getPokemonTypeList();
+    this.pokemonService.getPokemonTypeList().subscribe((allTypes) => this.allTypes = allTypes);
   }
 
   hasType(type: string): boolean {

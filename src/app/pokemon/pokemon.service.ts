@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Pokemon } from './pokemon';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap, of, catchError } from 'rxjs';
 
 @Injectable(
@@ -29,7 +29,18 @@ export class PokemonService {
       )
   }
 
-  private log(response: Pokemon[] | Pokemon | undefined | string[]): void {
+  updatePokemon(pokemon: Pokemon): Observable<null | undefined> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.put('api/pokemons', pokemon, httpOptions).pipe(
+      tap((result) => this.log(result)),
+      catchError((error => this.handleError(error, undefined)))
+    )
+  }
+
+  private log(response: any): void {
     console.table(response);
   }
 

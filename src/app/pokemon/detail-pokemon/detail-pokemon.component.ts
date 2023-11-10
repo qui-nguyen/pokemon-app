@@ -19,7 +19,7 @@ export class DetailPokemonComponent implements OnInit {
 
     pkmId
       ? this.pokemonService.getPokemonById(+pkmId).subscribe((pkm) => this.pokemon = pkm)
-      : (this.pokemon = undefined);    
+      : (this.pokemon = undefined);
   }
 
   goToBack() {
@@ -28,5 +28,13 @@ export class DetailPokemonComponent implements OnInit {
 
   goToEditPokemon(id: number) {
     this.router.navigate(['edit/pokemon', id]);
+  }
+
+  deletePokemon(id: number) {
+    this.pokemonService.deletePokemonById(id)
+      .subscribe((res) => res === null
+        ? this.goToBack()
+        : alert("Erreur survenue lorsque de la suppression du pokémon !")
+      );
   }
 }

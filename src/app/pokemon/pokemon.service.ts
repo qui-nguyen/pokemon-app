@@ -58,6 +58,16 @@ export class PokemonService {
     )
   }
 
+  searchPokemonByName(term: string): Observable<Pokemon[]> {
+    if (term.length < 2) {
+      return of([]);
+    }
+    return this.http.get<Pokemon[]>(`api/pokemons/?name=${term}`).pipe(
+      tap((result) => this.log(result)),
+      catchError((error) => this.handleError(error, []))
+    );
+  }
+
   private log(response: any): void {
     console.table(response);
   }

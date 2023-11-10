@@ -1,5 +1,5 @@
 <h1 class="center">Liste de pokémons</h1>
-
+<app-search-pokemon></app-search-pokemon>
 <div class="container">
   <div class="row">
     <div *ngFor="let pokemon of pokemonList" class="col m6 s12">
@@ -9,7 +9,7 @@
         </div>
         <div class="card-stacked">
           <div class="card-content">
-            <p (click)="goToPokemon(pokemon.id)">{{ pokemon.name }}</p>
+            <h4 class="waves-effect" (click)="goToPokemon(pokemon.id)">{{ pokemon.name }}</h4>
             <p>
               <small>{{ pokemon.created | date : "dd/MM/yyyy" }}</small>
             </p>

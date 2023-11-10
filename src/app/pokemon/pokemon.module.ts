@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
 import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component';
 import { AddPokemonComponent } from './add-pokemon/add-pokemon.component';
+import { SearchPokemonComponent } from './search-pokemon/search-pokemon.component';
 
 const pokemonRoutes: Routes = [ // declare les routes spécifiques en hut puis générales en bas
   { path: 'edit/pokemon/:id', component: EditPokemonComponent },
@@ -28,6 +29,7 @@ const pokemonRoutes: Routes = [ // declare les routes spécifiques en hut puis g
     PokemonFormComponent,
     EditPokemonComponent,
     AddPokemonComponent,
+    SearchPokemonComponent,
   ],
   imports: [
     CommonModule,

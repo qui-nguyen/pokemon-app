@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from '../pokemon.service';
 import { Pokemon } from '../pokemon';
 
@@ -11,6 +11,7 @@ import { Pokemon } from '../pokemon';
 export class PokemonFormComponent implements OnInit {
   @Input() pokemon: Pokemon;
   allTypes: string[];
+  isAddForm: boolean;
 
   constructor(
     private router: Router,
@@ -18,6 +19,7 @@ export class PokemonFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.pokemonService.getPokemonTypeList().subscribe((allTypes) => this.allTypes = allTypes);
+    this.isAddForm = this.router.url.includes('add');
   }
 
   hasType(type: string): boolean {
@@ -47,6 +49,16 @@ export class PokemonFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.isAddForm) {
+      this.pokemonService.addPokemon(this.pokemon)
+        .subscribe((res) => res !== undefined
+          ? this.router.navigate(['/pokemon', res.id])
+          : alert("Une erreur survenue lors de la création du pokémon !")
+        )
+      
+      return;
+    }
+
     this.pokemonService.updatePokemon(this.pokemon)
       .subscribe((res) => res === null
         ? this.router.navigate(['/pokemon', this.pokemon.id])

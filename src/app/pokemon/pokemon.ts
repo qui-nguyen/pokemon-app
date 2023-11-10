@@ -6,4 +6,19 @@ export class Pokemon {
     picture: string;
     types: string[];
     created: Date;
+    constructor(
+        hp: number = 0,
+        cp: number = 0,
+        name: string = "Entrer le nom du pokémon ...",
+        picture: string = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/xxx.png",
+        types: string[] = ['Normal'],
+        created: Date = new Date()
+    ) {
+        this.hp = hp;
+        this.cp = cp;;
+        this.name = name;
+        this.picture = picture;
+        this.types = types;
+        this.created = created
+    }
 }

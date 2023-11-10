@@ -48,14 +48,17 @@
         </div>
         <div class="card-action">
           <a class="waves-effect" (click)="goToBack()">Retour</a>
-          <a class="waves-effect" (click)="goToEditPokemon(pokemon.id)">Editer</a>
-          <a class="waves-effect" (click)="deletePokemon(pokemon.id)">Supprimer</a>
+          <a class="waves-effect" (click)="goToEditPokemon(pokemon.id)"
+            >Editer</a
+          >
+          <a class="waves-effect" (click)="deletePokemon(pokemon.id)"
+            >Supprimer</a
+          >
         </div>
       </div>
     </div>
   </div>
 </div>
 <h4 *ngIf="!pokemon" class="center">
-  No Pokemon
-  <!-- <app-loader></app-loader> -->
+  <app-loader></app-loader>
 </h4>

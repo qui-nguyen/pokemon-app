@@ -15,10 +15,10 @@ import { LoaderComponent } from './loader/loader.component';
 import { authGuard } from '../auth.guard';
 
 const pokemonRoutes: Routes = [ // declare les routes spécifiques en hut puis générales en bas
-  { path: 'edit/pokemon/:id', component: EditPokemonComponent, canActivate: [authGuard] },
-  { path: 'pokemon/add', component: AddPokemonComponent, canActivate: [authGuard] },
-  { path: 'pokemons', component: ListPokemonComponent, canActivate: [authGuard] },
-  { path: 'pokemon/:id', component: DetailPokemonComponent, canActivate: [authGuard] },
+  { path: 'edit/pokemon/:id', component: EditPokemonComponent, canActivate: [authGuard()] },
+  { path: 'pokemon/add', component: AddPokemonComponent, canActivate: [authGuard()] },
+  { path: 'pokemons', component: ListPokemonComponent, canActivate: [authGuard()] },
+  { path: 'pokemon/:id', component: DetailPokemonComponent, canActivate: [authGuard()] },
 ]
 
 

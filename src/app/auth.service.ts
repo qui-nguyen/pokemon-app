@@ -16,7 +16,7 @@ export class AuthService {
     return of(isLoggedIn)
       .pipe(
         delay(1000),
-        tap(isLoggedIn => this.isLoggedIn === isLoggedIn)
+        tap(isLoggedIn => this.isLoggedIn = isLoggedIn)
       );
   }
 

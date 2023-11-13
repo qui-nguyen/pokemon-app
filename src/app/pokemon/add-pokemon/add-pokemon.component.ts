@@ -7,9 +7,7 @@ import { Pokemon } from '../pokemon';
   template: `
   <h2 class="center">Add Pokemon</h2>
   <app-pokemon-form *ngIf="pokemon" [pokemon]="pokemon"></app-pokemon-form>
-`,
-  styleUrls: ['./add-pokemon.component.scss']
-})
+`})
 export class AddPokemonComponent implements OnInit {
   pokemon: Pokemon;
 
